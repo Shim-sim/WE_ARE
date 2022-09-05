@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
+const cors = require('cors')
 const app = express();
 const config = require('./config/key');
 
@@ -17,10 +17,17 @@ const mongoose = require('mongoose');
 	.then(() => console.log('몽고db 잘연결됨'))
 	.catch(err => console.log(err));
 
+const cors_origin = []
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors({
+	origin: 'https://we-are-catyi.run.goorm.io',
+	credentials: true
+}))
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -34,6 +41,7 @@ app.use('/user', userRouter)
 app.use('/auth', authRouter);
 
 
+app.get('/hello', (req, res) => res.send('서버연결됨'))
 
 
 
@@ -49,7 +57,7 @@ app.use('/auth', authRouter);
 
 
 
-const port = 3000
+const port = 5000
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
