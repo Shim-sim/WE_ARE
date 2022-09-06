@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
-import { Link } from "react-router-dom";
-import axios from 'axios'
+import { useState  } from 'react'
+import { useDispatch } from "react-redux";
+import { loginUser } from "../_actions/user_action";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from '../assets/logo.png'
 import StyledContainer from '../components/Style/styledContainer'
@@ -66,13 +67,49 @@ const Button = styled.button`
 
 function Login() {
 	
-	useEffect(()=> {
-		axios.get('https://weare-server.run.goorm.io/hello')
-		.then(response => {
-			console.log(response)
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+	
+	const [inputs, setInput] = useState({
+		userId: "",
+		userPw: ""
+	})
+	
+	const { userId, userPw } = inputs
+	
+	const onChange = (e) => {
+		const { value, name } = e.target
+		setInput({
+			...inputs,
+			[name]: value
 		})
+	}
+	
+	const onSubmit = (e) => {
+		e.preventDefault();
 		
-	}, [])
+		let body = {
+			id: userId,
+			password: userPw
+		}
+		
+		if(!userId || !userPw) {
+			alert('필수 항목을 작성해주세요!')
+		} else {
+			dispatch(loginUser(body))
+				.then((response) => {
+					if(response.payload.loginSuccess) {
+						localStorage.setItem('userId', response.payload.userId)
+						navigate('/register')
+					} else {
+						console.log(response.payload)
+					}
+			})
+		}
+		
+		
+		
+	}
 	
 	return (
 		<StyledContainer>
@@ -84,10 +121,20 @@ function Login() {
 						을 시작하세요!
 					</LogoTitle>
 				</FlexBox>
-				<form>
-					<LoginInput placeholder="아이디"/>
-					<LoginInput placeholder="비밀번호"/>
-					<Button>로그인</Button>
+				<form onSubmit={onSubmit}>
+					<LoginInput
+						placeholder="아이디"
+						name="userId"
+						value={userId}
+						onChange={onChange}
+					/>
+					<LoginInput 
+						placeholder="비밀번호"
+						name="userPw"
+						value={userPw}
+						onChange={onChange}
+					/>
+					<Button type="submit">로그인</Button>
 				</form>	
 				 <StyledDiv>
          		<Link to="/register">
