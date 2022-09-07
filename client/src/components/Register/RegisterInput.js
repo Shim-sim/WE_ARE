@@ -4,7 +4,14 @@ const StyledLabel = styled.label`
   font-size: 12px;
   color: #777;
   padding-left: 5px;
-	margin-top: 15px;
+	margin-top: 10px;
+`;
+
+const StyledSpan = styled.span`
+  font-size: 12px;
+  color: red;
+  padding-left: 5px;
+	margin-top: 10px;
 `;
 
 const StyledInput = styled.input`
@@ -34,17 +41,20 @@ const RegisterInput = ({
 	name,
 	placeholder,
 	onChange,
-	value
+	value,
+	type,
+	children
 }) => {
 	return (
 		
 		<StyledLabel>
-		{labelName}	
+		{labelName}	<StyledSpan>{children}</StyledSpan>
 		<StyledInput
 			name={name}
 			placeholder={placeholder}
 			onChange={onChange}
 			value={value}
+			type={type}
 		/>
 		</StyledLabel>	
 	)
