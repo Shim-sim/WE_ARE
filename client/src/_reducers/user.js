@@ -12,6 +12,10 @@ export default function user(state = {}, action) {
 		case LOGIN_USER:
 			return {...state, loginSuccess: action.payload}
 			break;
+			
+		case REGISTER_USER:
+			return {...state, success: action.paylod}
+			break;
 
 		default: 
 			return state

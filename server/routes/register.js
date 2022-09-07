@@ -18,6 +18,15 @@ router.post('/', (req, res) => {
 	})
 })
 
+router.post('/checkId', (req, res) => {
+	User.findOne({ id: req.body.id }, (err, user) => {
+		if(!user) return res.status(200).send()
+		return res.status(400).json({
+			success: false
+		})
+	})
+})
+
 
 
 

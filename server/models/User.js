@@ -6,18 +6,18 @@ const saltRounds = 10;
 
 
 const userSchema = mongoose.Schema({
-    name: {
-        type: String,
-        maxlength: 50
-    },
-    email: {
-        type: String,
-        trim: true,
-        unique: 1
-    },
-    password: {
+		id: {
+			type: String,
+			maxlength: 10,
+			unique: true
+		},
+	  password: {
         type: String,
         minlength: 5
+    },
+	  email: {
+        type: String,
+        trim: true
     },
     nickname: {
         type: String
@@ -25,9 +25,6 @@ const userSchema = mongoose.Schema({
 	  entranceYear: {
         type: String
     },
-		armyUnit: {
-			type: String
-		},
     token: {
         type: String
     },
