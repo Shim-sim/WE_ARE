@@ -7,7 +7,7 @@ import {
 } from './types';
 import { USER_SERVER } from '../components/Config.js'
 
-
+axios.defaults.withCredentials = true;
 
 export function loginUser(data) {
 	const request =
@@ -28,6 +28,30 @@ export function registerUser(data) {
 	
 	return {
 		type: REGISTER_USER,
+		payload: request
+	}
+	
+}
+
+export function logoutUser() {
+	const request =
+		axios.get(`${USER_SERVER}/logout`)
+		.then(response => response.data)
+	
+	return {
+		type: LOGOUT_USER,
+		payload: request
+	}
+	
+}
+
+export function auth() {
+	const request =
+		axios.get(`${USER_SERVER}/auth`)
+		.then(response => response.data)
+	
+	return {
+		type: AUTH_USER,
 		payload: request
 	}
 	

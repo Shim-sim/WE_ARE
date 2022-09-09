@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../_actions/user_action";
+import Auth from '../hoc/auth'
 import axios from 'axios'
 import StyledContainer from '../components/Style/styledContainer'
 import styled from "styled-components";
@@ -217,4 +218,4 @@ function Register() {
 	)
 }
 
-export default Register
+export default Auth(Register, false)

@@ -1,7 +1,8 @@
-import { useState  } from 'react'
+import { useState } from 'react'
 import { useDispatch } from "react-redux";
 import { loginUser } from "../_actions/user_action";
 import { Link, useNavigate } from "react-router-dom";
+import Auth from '../hoc/auth'
 import styled from "styled-components";
 import logo from '../assets/logo.png'
 import StyledContainer from '../components/Style/styledContainer'
@@ -100,9 +101,9 @@ function Login() {
 				.then((response) => {
 					if(response.payload.loginSuccess) {
 						localStorage.setItem('userId', response.payload.userId)
-						navigate('/register')
+						navigate('/board')
 					} else {
-						console.log(response.payload)
+						alert(response.payload.message)
 					}
 			})
 		}
@@ -127,12 +128,14 @@ function Login() {
 						name="userId"
 						value={userId}
 						onChange={onChange}
+						type="text"
 					/>
 					<LoginInput 
 						placeholder="비밀번호"
 						name="userPw"
 						value={userPw}
 						onChange={onChange}
+						type="password"
 					/>
 					<Button type="submit">로그인</Button>
 				</form>	
@@ -147,4 +150,4 @@ function Login() {
 	)
 }
 
-export default Login
+export default Auth(Login, false)
