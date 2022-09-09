@@ -5,9 +5,13 @@ import {
     LOGOUT_USER,
 } from '../_actions/types';
 
+const initialState = {
+	isLoggedIn: false
+}
 
 
-export default function user(state = {}, action) {
+
+export default function user(state = initialState, action) {
 	switch(action.type) {
 		case LOGIN_USER:
 			return {...state, loginSuccess: action.payload}
@@ -22,9 +26,9 @@ export default function user(state = {}, action) {
 			break;
 			
 		case AUTH_USER:
-			return {...state, userData: action.payload}
+			return {...state, isLoggedIn: action.payload.isAuth, userData: action.payload}
 
 		default: 
-			return state
+			return state;
 	}
 }

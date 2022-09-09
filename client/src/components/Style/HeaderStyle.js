@@ -22,18 +22,55 @@ export const HeaderWrap = styled.div`
 	}
 	
 	span {
-	  color: red;
+	  color: #ff1a00;
 		font-size: 20px;
 		font-weight: bold;
 		padding-left: 3px;
 	}
 	
-	.header__login {
+	.icon {
+		font-size: 30px;
+		transition: all 0.3s;
+		color: #725d5d;
+		vertical-align: middle;
+		
+		&:hover {
+			color: #ff1a00;
+		}
+	}
+	
+	.header__nav {
 		position: absolute;
 		font-size: 20px;
 		font-weight: bold;
 		right: 13%;
+	}
+	
+	.subMenu {
+		position: absolute;
+		width: 140px;
+		right: 9%;
+		top: 60px;
+		background: #fff;
+		border: 1px solid #eee;
+		box-shadow: 0px 0px 15px rgb(0 0 0 / 15%);
+		border-radius: 5px;
 		
+		li {
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			cursor: pointer;
+		}
+		
+		.logout {
+			color: #ff0000;
+		}
+	}
+	
+	
+	
+	
 	}
 `
 
