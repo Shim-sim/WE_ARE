@@ -9,15 +9,17 @@ const config = require('./config/key');
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
-const authRouter = require('./routes/auth');
+
 const userRouter = require('./routes/user');
+const boardRouter = require('./routes/board');
+const authRouter = require('./routes/auth');
 
 const mongoose = require('mongoose');
  mongoose.connect(config.mongoURI)
 	.then(() => console.log('몽고db 잘연결됨'))
 	.catch(err => console.log(err));
 
-const cors_origin = []
+
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,6 +40,7 @@ app.use('/register', registerRouter)
 app.use('/login', loginRouter)
 app.use('/logout', logoutRouter);
 app.use('/user', userRouter)
+app.use('/board', boardRouter);
 app.use('/auth', authRouter);
 
 
