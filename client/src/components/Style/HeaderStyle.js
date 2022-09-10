@@ -33,6 +33,7 @@ export const HeaderWrap = styled.div`
 		transition: all 0.3s;
 		color: #725d5d;
 		vertical-align: middle;
+		margin-left: 12px;
 		
 		&:hover {
 			color: #ff1a00;
@@ -66,6 +67,12 @@ export const HeaderWrap = styled.div`
 		.logout {
 			color: #ff0000;
 		}
+	}
+	
+	.icon__position {
+		position: absolute;
+		right: 25%;
+		margin: 12px;
 	}
 	
 	

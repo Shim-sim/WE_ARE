@@ -3,7 +3,7 @@ import { logoutUser } from '../../_actions/user_action'
 import { HeaderWrap } from '../Style/HeaderStyle'
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { BsFillPersonFill } from "react-icons/bs";
+import { BsFillPersonFill, BsPencilSquare } from "react-icons/bs";
 
 import logo from '../../assets/logo.png'
 
@@ -30,20 +30,24 @@ function Header() {
 	
 	return (
 		<HeaderWrap>
-			<div className="Header-Nav">
+			<div>
 				<Link to="/">
 					<img src={logo} alt="logo" />
 				</Link>
 				  <span>WEARE</span>
-				
+					
 				  {user == false ? (
 						<Link to="/">
 							<span className="header__nav">로그인</span>
 						</Link>
 					) : (
 						<>
-					 		<span className="header__nav" onClick={()=> setModal(!modal)}>
-								<BsFillPersonFill className="icon"/>
+							<span className="header__nav" >
+								<Link to="/upload">
+									<BsPencilSquare className="icon"/>
+								</Link>
+
+								<BsFillPersonFill className="icon" onClick={()=> setModal(!modal)}/>
 						 	</span>
 							{modal && (
 				 				<ul className="subMenu" onClick={()=> setModal(!modal)}>
@@ -57,18 +61,6 @@ function Header() {
 							)}
 						</>
 					)}
-				
-				
-				
-				
-				
-			
-				
-					
-					
-				
-				
-				
 			</div>	
 		</HeaderWrap>
 	)
