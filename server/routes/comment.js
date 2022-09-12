@@ -18,7 +18,7 @@ router.post('/upload', (req, res) => {
 
 
 router.post('/getComment', (req, res) => {
-	Comment.find({boardFrom: req.body.boardFrom})
+	Comment.find({ boardFrom: req.body.boardFrom })
 		.sort({createdAt: -1})
 		.exec((err, comments) => {
 			if(err) return res.status(400).send(err);
@@ -26,9 +26,13 @@ router.post('/getComment', (req, res) => {
 		})
 })
 
-
-
-
+router.post('/deleteComment', (req, res) => {
+    Comment.findOneAndDelete({ userFrom: req.body.userFrom, _id: req.body.id})
+			.exec((err, result) => {
+				if(err) return res.status(400).send(err);
+				return res.status(200).json({ success: true, result})
+			})
+})
 
 
 

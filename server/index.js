@@ -1,25 +1,21 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+const express = require('express')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const cors = require('cors')
-const app = express();
-const config = require('./config/key');
+const app = express()
+const config = require('./config/key')
+const registerRouter = require('./routes/register')
+const loginRouter = require('./routes/login')
+const logoutRouter = require('./routes/logout')
+const userRouter = require('./routes/user')
+const boardRouter = require('./routes/board')
+const commentRouter = require('./routes/comment')
+const authRouter = require('./routes/auth')
 
-
-const registerRouter = require('./routes/register');
-const loginRouter = require('./routes/login');
-const logoutRouter = require('./routes/logout');
-
-const userRouter = require('./routes/user');
-const boardRouter = require('./routes/board');
-const authRouter = require('./routes/auth');
-
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
  mongoose.connect(config.mongoURI)
 	.then(() => console.log('몽고db 잘연결됨'))
 	.catch(err => console.log(err));
-
-
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,21 +37,11 @@ app.use('/login', loginRouter)
 app.use('/logout', logoutRouter);
 app.use('/user', userRouter)
 app.use('/board', boardRouter);
+app.use('/comment', commentRouter)
 app.use('/auth', authRouter);
 
 
 app.get('/hello', (req, res) => res.send('서버연결됨'))
-
-
-
-
-
-
-
-
-
-
-
 
 
 

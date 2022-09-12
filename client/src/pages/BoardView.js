@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { USER_SERVER } from '../components/Config.js'
 import axios from 'axios'
 import styled from 'styled-components'
@@ -19,11 +19,9 @@ import Auth from '../hoc/auth'
 function BoardView() {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const {params} = useParams()
 
 	
 	const [Content, setContent] = useState([])
-	const [sort, setSort] = useState('최신순')
 	const [skip, setSkip] = useState(5)
   const [loadMore, setLoadMore] = useState(true);
 
@@ -38,23 +36,33 @@ function BoardView() {
 					}
 			})
 	}
+
+	const FetchNickname = () => {
+		const userId = localStorage.getItem('userId')
+		axios.get(`${USER_SERVER}/user/profile`,userId)
+			.then((response) => {
+				localStorage.setItem('userNickname', response.data.nickname)
+			})
+	}
 	
 	
 	useEffect(()=> {
 		axios.post(`${USER_SERVER}/board/getBoard`)
 			.then((response) => {
-			console.log(response)
 				if(response.data.success) {
 					setContent(response.data.boards)
 				} else {
 					alert('게시글을 보여줄 수 없습니다.')
 				}
 		})
+		FetchNickname()
 	}, [])
+	
+	
 	
 	return (
 		<>
-			<StyledContainer top="15%">
+			<StyledContainer marginTop="15%">
 				{Content && 
 					Content.map((board, index) => {
 						return(

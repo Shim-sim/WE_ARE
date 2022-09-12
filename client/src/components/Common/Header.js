@@ -4,10 +4,7 @@ import { HeaderWrap } from '../Style/HeaderStyle'
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { BsFillPersonFill, BsPencilSquare } from "react-icons/bs";
-
 import logo from '../../assets/logo.png'
-
-
 
 
 
@@ -23,6 +20,7 @@ function Header() {
 		.then(response => {
 			if(response.payload.logoutSuccess) {
 				localStorage.removeItem('userId')
+				localStorage.removeItem('userNickname')
 				navigate('/')
 			}
 		})

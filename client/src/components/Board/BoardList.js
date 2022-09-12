@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import profile from '../../assets/profile.png'
 import styled from 'styled-components'
 import UpdateTime from '../Common/UpdateTime'
 import DeleteBoard from './DeleteBoard';
+import CommentButton from './CommentButton';
 
 const BoardBox = styled.div`
 	width: 80%;
@@ -76,7 +77,6 @@ export default function BoardList(props) {
 					? <DeleteBoard
 							board={props.id}
 							user={props.user}
-							onRemove={props.onRemove}
 						/>	
 					: null }
 			</BoardUser>
@@ -86,9 +86,8 @@ export default function BoardList(props) {
 			</Link>
 			
 			
-			<div style={{textAlign: "right"}}>
-			<StyledDiv>버</StyledDiv>
-			<StyledDiv>튼</StyledDiv>
+			<div style={{textAlign: "right", position: "relative", height: "20px"}}>
+				<CommentButton boardId={props.id} />
 			</div>
 		</BoardBox>
 	)

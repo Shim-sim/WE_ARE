@@ -7,11 +7,12 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
+	margin-top: ${(props) => props.marginTop || "0px"};
 `
 
-function StyledContainer({children, minHeight}) {
+function StyledContainer({children, minHeight, marginTop}) {
     return (
-        <Container minHeight={minHeight}>
+        <Container minHeight={minHeight} marginTop={marginTop}>
             {children}
         </Container>
     )

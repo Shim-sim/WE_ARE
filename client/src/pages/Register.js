@@ -96,7 +96,8 @@ function Register() {
             ...inputs,
             usableId: true,
           })
-					setNameInfo("※ 사용가능한 아이디입니다.")
+					alert('사용 가능한 아이디 입니다')
+					
 				} else {
 					setNameInfo("※ 사용 불가능한 아디이입니다.")
 				}
@@ -173,7 +174,7 @@ function Register() {
 				{overIdLength && (
 					<LimitOnLength>아이디를 12자 이내로 입력해주세요</LimitOnLength>
 				)}
-				<CheckIdButton onClick={checkId}>중복체크</CheckIdButton>
+				<CheckIdButton type="button" onClick={checkId}>중복체크</CheckIdButton>
 				<RegisterInput
 					placeholder="비밀번호" 
 					labelName="비밀번호"

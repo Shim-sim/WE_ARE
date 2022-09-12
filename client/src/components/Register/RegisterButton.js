@@ -14,11 +14,13 @@ const Button = styled.button`
 		height: 40px;
 		font-size: 16px;
 		font-weight: 200;
+		margin-top: 20px;
+		margin-bottom: 8px;
+		
 		
 		/* 색상 */
 		background: #c62917;
-		margin-top: 20px;
-		margin-bottom: 8px;
+		
 `
 
 const RegisterButton = ({ type, children}) => {

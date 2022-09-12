@@ -20,14 +20,14 @@ router.post('/upload', (req, res) => {
 })
 
 router.post('/getBoard', (req, res) => {
-	const Page = req.body.page
+	
 	Board.countDocuments({}, (err, count) => {
 		if(err) {
 			return res.status(400).send(err)
 		} else {
 			Board.find()
 			.sort({createdAt: -1})
-			.skip(((Page-1)*5))
+			.skip(req.body.skip)
 			.limit(5)
 			.populate("userFrom")
 			.exec((err, boards) => {
@@ -44,6 +44,15 @@ router.post('/deleteBoard', (req, res) => {
         if(err) return res.status(400).send(err);
         return res.status(200).json({ success: true, result })
     })
+})
+
+router.post('/:id', (req, res) => {
+	Board.findOne({ _id: req.body.boardId }, (err, board) => {
+		if(board) return res.json({ success:true, board })
+		else return res.status(404).json({
+			success: false
+		})
+	})
 })
 
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import UploadInput from '../components/Upload/UploadInput'
@@ -82,17 +82,7 @@ function Upload() {
 		})
 	}
 	
-	useEffect(() => {
-		const userId = localStorage.getItem('userId')
-		axios.get(`${USER_SERVER}/user/profile`,userId)
-			.then((response) => {
-				console.log(response)
-				localStorage.setItem('userNickname', response.data.nickname)
-			})
-	},[])
-	
 	return(
-		
 	
 	<StyledContainer  minHeight="45vh">
 		<UploadForm onSubmit={onSubmit}>
