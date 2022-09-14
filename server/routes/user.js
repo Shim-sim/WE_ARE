@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
 const { auth } = require("../middleware/auth");
+const { Board } = require("../models/Board");
+const { Comment } = require("../models/Comment");
 
 //=================================
 //             User
@@ -30,6 +32,15 @@ router.get('/profile', auth, (req, res) => {
     })
 })
 
+
+router.post('/myBoard', (req, res) => {
+	Board.findOne({ userFrom : req.body.userFrom })
+		.sort({ createdAt: -1})
+		.exec((err, boards) => {
+			if(err) return res.status(400).send(err)
+			return res.status(200).json({ success: true, boards})
+	})
+})
 
 
 
