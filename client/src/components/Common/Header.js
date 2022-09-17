@@ -1,20 +1,24 @@
-import { useState, useEffect } from 'react'
-import { logoutUser } from '../../_actions/user_action'
-import { HeaderWrap } from '../Style/HeaderStyle'
+import { useState } from 'react';
+import { logoutUser } from '../../_actions/user_action';
+import { HeaderWrap } from '../Style/HeaderStyle';
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { BsFillPersonFill, BsPencilSquare } from "react-icons/bs";
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.png';
 
 
 
 function Header() {
 	const user = useSelector(state => state.user.isLoggedIn);
-	const navigate = useNavigate()
-	const dispatch = useDispatch()
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	
-	const [modal, setModal] = useState(false)
+	const [modal, setModal] = useState(false);
+	const userId = localStorage.getItem('userId')
+	
 
+	
+	
 	const LogoutHandler = () => {
 		dispatch(logoutUser())
 		.then(response => {
@@ -34,7 +38,7 @@ function Header() {
 				</Link>
 				  <span>WEARE</span>
 					
-				  {user == false ? (
+				  {userId === null ? (
 						<Link to="/">
 							<span className="header__nav">로그인</span>
 						</Link>
@@ -44,7 +48,6 @@ function Header() {
 								<Link to="/upload">
 									<BsPencilSquare className="icon"/>
 								</Link>
-
 								<BsFillPersonFill className="icon" onClick={()=> setModal(!modal)}/>
 						 	</span>
 							{modal && (
