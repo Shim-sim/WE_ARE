@@ -11,7 +11,7 @@ const CommentBox = styled.div`
   padding: 14px 12px;
   border: 1px solid #ddd;
 	border-radius: 8px;
-  margin: 7px -1px -1px -1px;
+  margin: 15px -1px -1px -1px;
 	width: 75%;
 `
 const CommentUser = styled.div`

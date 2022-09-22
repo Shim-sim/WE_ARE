@@ -19,9 +19,12 @@ export default function UpdateTime(time) {
 				return `${TimeDiffDay}일 전`;
 		}
 
+	
+
 		return (
 				<div>
 						{`${Math.floor(TimeDiffDay / 365)}년 전`}
 				</div>
 		)
 }
+

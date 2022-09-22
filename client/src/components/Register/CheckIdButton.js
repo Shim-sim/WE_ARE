@@ -21,10 +21,10 @@ const StyledButton = styled.button`
 `;
 
 
-const CheckIdButton = function ({ onClick, children }) {
+const CheckIdButton = function ({ onClick, children, type }) {
   return (
     <div>
-      <StyledButton onClick={onClick}>{children}</StyledButton>
+      <StyledButton type={type} onClick={onClick}>{children}</StyledButton>
     </div>
   );
 };

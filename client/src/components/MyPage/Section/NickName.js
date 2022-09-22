@@ -30,7 +30,7 @@ const StyledBox = styled.div`
 const StyledInput = styled.input`
 	width: 95%;
 	margin-left: 10px;
-	height: 50px;
+	height: 40px;
 	padding: 0 10px;
 	border: 1px solid #a7a7a7;
 	border-radius: 15px;

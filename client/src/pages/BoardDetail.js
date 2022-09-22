@@ -4,6 +4,7 @@ import { USER_SERVER } from '../components/Config.js'
 import axios from 'axios'
 import styled from 'styled-components'
 import StyledContainer from '../components/Style/styledContainer'
+import StyledBox from '../components/Style/StyledBox'
 import BoardList from '../components/Board/BoardList'
 import CommentList from '../components/Board/CommentList'
 import CommentInput from '../components/Board/CommentInput'
@@ -19,13 +20,6 @@ const CommentForm = styled.form`
 	width: 80%;
 `;
 
-const StyledBox = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	margin-top: 20%;
-`
 
 const BackButton = styled.span`
   color: #c62917;
@@ -131,7 +125,7 @@ function BoardDetail(props) {
 					onChange={(e)=> setValue(e.target.value)}
 				/>
 				<CheckWriter 
-					left="230px"
+					left="70%"
 					icon={WriterIcon}
 					click={onIconClick}
 					submit={onSubmit}

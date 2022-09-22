@@ -46,18 +46,17 @@ const StyledSpan = styled.span`
 `;
 
 const Button = styled.button`
-	/* 공통 스타일 */
+
   width: 95%;
   color: white;
   cursor: pointer;
   text-align: center;
 
-  /* 크기 */
+
   height: 40px;
   font-size: 16px;
   font-weight: 200;
 
-	/* 색상 */
   background: #db1e08;
 
 
@@ -76,7 +75,7 @@ function Login() {
 		userPw: ""
 	})
 	
-	const { userId, userPw } = inputs
+	const { userId, userPw } = inputs;
 	
 	const onChange = (e) => {
 		const { value, name } = e.target
@@ -107,9 +106,6 @@ function Login() {
 					}
 			})
 		}
-		
-		
-		
 	}
 	
 	return (
@@ -137,7 +133,7 @@ function Login() {
 						onChange={onChange}
 						type="password"
 					/>
-					<Button type="submit">로그인</Button>
+					<Button type="submit" onClick={onSubmit}>로그인</Button>
 				</form>	
 				 <StyledDiv>
          		<Link to="/register">

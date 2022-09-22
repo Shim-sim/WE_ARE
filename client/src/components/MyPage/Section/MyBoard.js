@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Auth from '../../../hoc/auth'
-import styled from 'styled-components' 
 import StyledHeader from './StyledHeader'
 import BoardList from '../../Board/BoardList'
 import StyledBox from '../../Style/StyledBox'
@@ -16,7 +15,6 @@ function MyBoard(props) {
 		const userFrom = localStorage.getItem('userId')
 		axios.post(`${USER_SERVER}/user/myBoard`, {'userFrom': userFrom} )
 			.then(response => {
-				console.log(response)
 				if(response.data.success) {
 					setMyboard(response.data.boards)
 				} else {
@@ -55,4 +53,4 @@ function MyBoard(props) {
 	)
 }
 
-export default Auth(MyBoard)
+export default Auth(MyBoard, true)

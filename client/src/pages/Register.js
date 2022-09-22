@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../_actions/user_action";
-import Auth from '../hoc/auth'
-import axios from 'axios'
-import StyledContainer from '../components/Style/styledContainer'
+import { USER_SERVER } from '../components/Config.js';
+import Auth from '../hoc/auth';
+import axios from 'axios';
+import StyledContainer from '../components/Style/styledContainer';
 import styled from "styled-components";
-import logo from '../assets/logo.png'
-import RegisterInput from '../components/Register/RegisterInput'
-import RegisterButton from '../components/Register/RegisterButton'
-import RegisterSelect from '../components/Register/RegisterSelect'
-import LimitOnLength from '../components/Register/LimitOnLength'
-import CheckIdButton from '../components/Register/CheckIdButton'
+import logo from '../assets/logo.png';
+import RegisterInput from '../components/Register/RegisterInput';
+import RegisterButton from '../components/Register/RegisterButton';
+import RegisterSelect from '../components/Register/RegisterSelect';
+import LimitOnLength from '../components/Register/LimitOnLength';
+import CheckIdButton from '../components/Register/CheckIdButton';
 
 
 const Header = styled.div`
@@ -22,11 +23,11 @@ const Header = styled.div`
 `
 
 const Logo = styled.img`
-    display: flex;
-		justify-content: center;
-    width: 60px;
-    height: 95px;
-		margin: 10px auto 0 auto;
+	display: flex;
+	justify-content: center;
+	width: 60px;
+	height: 95px;
+	margin: 10px auto 0 auto;
 `;
 
 const HeaderTitle = styled.h2`
@@ -50,8 +51,8 @@ for (let i = 2000; i < 2023; i++) {
 
 function Register() {
 	
-	const dispatch = useDispatch()
-	const navigate = useNavigate()
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	
 	const [inputs, setInput] = useState({
 		userId: "",
@@ -61,11 +62,10 @@ function Register() {
 		usableId: false
 	})
 	
-  const { userId, userPw, userEmail, userNickname, usableId } = inputs
-	const [entranceYear, setEntanceYear] = useState("2022")
-	const [nameInfo, setNameInfo] = useState('')
-  const [overIdLength, setOverIdLength] = useState(false)
-	const [overPwLength, setOverPwLength] = useState(false)
+  const { userId, userPw, userEmail, userNickname, usableId } = inputs;
+	const [entranceYear, setEntanceYear] = useState("2022");
+  const [overIdLength, setOverIdLength] = useState(false);
+	const [overPwLength, setOverPwLength] = useState(false);
 	
 	const onChange = (e) => {
 		const { value, name } = e.target
@@ -81,28 +81,31 @@ function Register() {
   };
 	
 	const checkId = (e) => {
-		e.preventDefault()
-		if(!userId) {
-			return alert('아이디를 입력해주세요')
+		e.preventDefault();
+		let body = {
+			id: userId
 		}
-		
-		if(overIdLength) {
+		if(!userId) {
+			return alert('아이디를 입력해주세요.')
+		} else if(overIdLength) {
 			return
 		}
-		axios.post('https://weare-server.run.goorm.io/register/checkId', {id: userId})
+		
+		axios.post(`${USER_SERVER}/register/checkId/${userId}`,body)
 			.then((response) => {
 				if(response.status === 200) {
 					setInput({
             ...inputs,
-            usableId: true,
-          })
+            usableId: true
+          });
 					alert('사용 가능한 아이디 입니다')
-					
-				} else {
-					setNameInfo("※ 사용 불가능한 아디이입니다.")
 				}
-		})
-	}
+			})
+			.catch(err => {
+				console.log(err);
+				alert('다른 아이디를 입력해주세요.')
+		});
+	};
 	
 	const onRegister = (e) => {
 		e.preventDefault()
@@ -150,6 +153,8 @@ function Register() {
 		
 	}, [inputs.userId, inputs.userPw])
 	
+
+	
 	
 	return (
 		<StyledContainer minHeight="95vh">
@@ -161,20 +166,21 @@ function Register() {
 				<HeaderTitle>WE ARE에 오신것을 환영합니다.</HeaderTitle>
 				<HeaderText>WE ARE은 1포병여단 익명 게시판 플래폼입니다.</HeaderText>
 			</Header>
-			<form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onRegister}>
+			<form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={checkId}>
 				<RegisterInput
 					placeholder="아이디" 
 					labelName="아이디"
 					name="userId"
 					type="text"
-					children={nameInfo} 
 					onChange={onChange}
 					value={userId}
 				/>
-				{overIdLength && (
+				{overIdLength && 
 					<LimitOnLength>아이디를 12자 이내로 입력해주세요</LimitOnLength>
-				)}
-				<CheckIdButton type="button" onClick={checkId}>중복체크</CheckIdButton>
+				}
+				<CheckIdButton type="submit" onClick={checkId}>중복체크</CheckIdButton>
+				</form>
+				<form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onRegister}>
 				<RegisterInput
 					placeholder="비밀번호" 
 					labelName="비밀번호"
@@ -208,12 +214,10 @@ function Register() {
 					value={entranceYear}
 					dataArr={entranceYearArray}
 				/>
-			
-				
+
 				<RegisterButton type='submit'>회원가입</RegisterButton>
 			</form>
-			
-				
+
 		  </div>
 		</StyledContainer>	
 	)

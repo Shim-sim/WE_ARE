@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { USER_SERVER } from '../components/Config.js'
 import axios from 'axios'
 import styled from 'styled-components'
@@ -17,10 +15,7 @@ import Auth from '../hoc/auth'
  `
 
 function BoardView() {
-	const dispatch = useDispatch()
-	const navigate = useNavigate()
 
-	
 	const [Content, setContent] = useState([])
 	const [skip, setSkip] = useState(5)
   const [loadMore, setLoadMore] = useState(true);
@@ -58,8 +53,7 @@ function BoardView() {
 		FetchNickname()
 	}, [])
 	
-	
-	
+
 	return (
 		<>
 			<StyledContainer marginTop="15%">
@@ -81,11 +75,12 @@ function BoardView() {
 				}
 		</StyledContainer>
 		
-		{loadMore && (
+		{
+			Content && loadMore && 
 				<div style={{display: 'flex', justifyContent: 'center'}}>
 					<Button onClick={loadMoreHandler}>더 보기</Button>
 				</div>
-			)}
+		}
 			</>
 		
 	)
