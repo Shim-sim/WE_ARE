@@ -1,6 +1,6 @@
 //SERVER ROUTES 구름
 
-export const USER_SERVER = 'https://we-are-server.run.goorm.io'
+export const USER_SERVER = 'we-are-app.herokuapp.com'
 
 
-export const LOCAL_SERVER = "http://localhost::3000"
+export const LOCAL_SERVER = "we-are-app.herokuapp.com"
