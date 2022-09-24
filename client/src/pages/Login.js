@@ -62,7 +62,7 @@ const Button = styled.button`
 
   margin-top: 6px;
 	margin-left: 8px;
-`;
+`
 
 
 function Login() {
@@ -78,7 +78,7 @@ function Login() {
 	const { userId, userPw } = inputs;
 	
 	const onChange = (e) => {
-		const { value, name } = e.target;
+		const { value, name } = e.target
 		setInput({
 			...inputs,
 			[name]: value
@@ -99,7 +99,7 @@ function Login() {
 			dispatch(loginUser(body))
 				.then((response) => {
 					if(response.payload.loginSuccess) {
-						localStorage.setItem('userId', response.payload.userId);
+						localStorage.setItem('userId', response.payload.userId)
 						navigate('/board')
 					} else {
 						alert(response.payload.message)
