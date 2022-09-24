@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const app = express()
+const path = require("path")
 const config = require('./config/key')
 const registerRouter = require('./routes/register')
 const loginRouter = require('./routes/login')
@@ -25,6 +26,14 @@ app.use(cors({
 	origin: 'https://we-are-client.run.goorm.io',
 	credentials: true
 }))
+
+if(process.env.NODE_ENV === "production") {
+	app.use(express.static('client/build'));
+	
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"))
+	});
+}
 
 
 app.get('/', (req, res) => {
