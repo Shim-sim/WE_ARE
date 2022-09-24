@@ -4,7 +4,7 @@ import axios from 'axios'
 import Auth from '../../../hoc/auth'
 import styled from 'styled-components' 
 import StyledHeader from './StyledHeader'
-import { USER_SERVER } from '../../Config'
+import { USER_SERVER, LOCAL_SERVER } from '../../Config'
 import { MdPersonPin } from "react-icons/md";
 
 
@@ -61,7 +61,7 @@ function NickName() {
 			nickname: CurrentNickname
 		}
 		
-		axios.post(`${USER_SERVER}/user/update/nickname`, body)
+		axios.post(`${LOCAL_SERVER}/user/update/nickname`, body)
 			.then(response => {
 				if(response.status === 200) {
 					alert('닉네임이 변경되었습니다.')
@@ -75,7 +75,7 @@ function NickName() {
 	
 	
 	useEffect(()=> {
-		axios.get(`${USER_SERVER}/USER`, {_id: userFrom})
+		axios.get(`${LOCAL_SERVER}/user`, {_id: userFrom})
 			.then(response => {
 				setCurrentNickname(response.data.nickname)
 			})

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../_actions/user_action";
-import { USER_SERVER } from '../components/Config.js';
+import { USER_SERVER, LOCAL_SERVER } from '../components/Config.js';
 import Auth from '../hoc/auth';
 import axios from 'axios';
 import StyledContainer from '../components/Style/styledContainer';
@@ -91,7 +91,7 @@ function Register() {
 			return
 		}
 		
-		axios.post(`${USER_SERVER}/register/checkId/${userId}`,body)
+		axios.post(`${LOCAL_SERVER}/register/checkId/${userId}`,body)
 			.then((response) => {
 				if(response.status === 200) {
 					setInput({

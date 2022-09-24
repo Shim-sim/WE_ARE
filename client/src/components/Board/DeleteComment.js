@@ -1,7 +1,7 @@
 import axios from 'axios';
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { USER_SERVER } from '../Config.js'
+import { USER_SERVER, LOCAL_SERVER } from '../Config.js'
 
 
 const Button = styled.button`
@@ -20,7 +20,7 @@ export default function DeleteComment(props) {
 		}
 		
 		let comfirmDelete = window.confirm('삭제하시겠습니까?')
-		comfirmDelete && axios.post(`${USER_SERVER}/comment/deleteComment`, variables)
+		comfirmDelete && axios.post(`${LOCAL_SERVER}/comment/deleteComment`, variables)
 		.then(response => {
 			if(response.data.success) {
 				alert('댓글 삭제에 성공했습니다.')
