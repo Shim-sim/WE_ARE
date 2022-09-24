@@ -53,7 +53,7 @@ function BoardView() {
 		FetchNickname()
 	}, [])
 	
-
+	
 	return (
 		<>
 			<StyledContainer marginTop="15%">

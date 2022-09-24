@@ -26,16 +26,19 @@ app.use(cors({
 	credentials: true
 }))
 
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/buld'))
+	
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"))
+	})
+}
 
 
 app.use('/register', registerRouter)
 app.use('/login', loginRouter)
 app.use('/logout', logoutRouter);
-app.use('/user', userRouter)
+app.use('/user', userRouter) 
 app.use('/board', boardRouter);
 app.use('/comment', commentRouter)
 app.use('/auth', authRouter);
@@ -46,7 +49,7 @@ app.get('/hello', (req, res) => res.send('서버연결됨'))
 
 
 
-const port = 8000
+const port = process.env.PORT || 8000
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
