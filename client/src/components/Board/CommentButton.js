@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState  } from 'react'
 import styled from 'styled-components'
-import { USER_SERVER, LOCAL_SERVER } from '../Config.js'
+import { USER_SERVER } from '../Config.js'
 import { FaRegCommentDots } from "react-icons/fa"
 
 const ButtonImage = styled.span`
@@ -21,7 +21,7 @@ function CommentButton({boardId}) {
 	const [count, setCount] = useState(0)
 	
 	useEffect(()=> {
-		axios.post(`${LOCAL_SERVER}/comment/getComment`, {'boardFrom': boardId})
+		axios.post(`${USER_SERVER}/comment/getComment`, {'boardFrom': boardId})
 			.then((response) => {
 				if(response.data.success) {
 					setCount(response.data.commentCounts)

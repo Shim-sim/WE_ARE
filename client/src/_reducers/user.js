@@ -26,7 +26,7 @@ export default function user(state = initialState, action) {
 			break;
 			
 		case AUTH_USER:
-			return {...state,  userData: action.payload}
+			return {...state, isLoggedIn: action.payload.isAuth, userData: action.payload}
 
 		default: 
 			return state;

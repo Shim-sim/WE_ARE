@@ -5,13 +5,13 @@ import {
     AUTH_USER,
     LOGOUT_USER,
 } from './types';
-import { USER_SERVER, LOCAL_SERVER } from '../components/Config.js'
+import { USER_SERVER } from '../components/Config.js'
 
 axios.defaults.withCredentials = true;
 
 export function loginUser(data) {
 	const request =
-		axios.post(`${LOCAL_SERVER}/login`, data)
+		axios.post(`${USER_SERVER}/login`, data)
 		.then(response => response.data)
 	
 	return {
@@ -23,7 +23,7 @@ export function loginUser(data) {
 
 export function registerUser(data) {
 	const request =
-		axios.post(`${LOCAL_SERVER}/register`, data)
+		axios.post(`${USER_SERVER}/register`, data)
 		.then(response => response.data)
 	
 	return {
@@ -35,7 +35,7 @@ export function registerUser(data) {
 
 export function logoutUser() {
 	const request =
-		axios.get(`${LOCAL_SERVER}/logout`)
+		axios.get(`${USER_SERVER}/logout`)
 		.then(response => response.data)
 	
 	return {
@@ -47,7 +47,7 @@ export function logoutUser() {
 
 export function auth() {
 	const request =
-		axios.get(`${LOCAL_SERVER}/auth`)
+		axios.get(`${USER_SERVER}/auth`)
 		.then(response => response.data)
 	
 	return {

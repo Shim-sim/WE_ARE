@@ -7,7 +7,7 @@ import StyledContainer from '../components/Style/styledContainer'
 import CheckNickname from '../components/Upload/CheckNickname'
 import styled from 'styled-components'
 import Auth from '../hoc/auth'
-import { USER_SERVER, LOCAL_SERVER } from '../components/Config.js'
+import { USER_SERVER } from '../components/Config.js'
 
 
 const UploadForm = styled.form`
@@ -69,7 +69,7 @@ function Upload() {
 			boardWriter: BoardWriter
 		}
 		
-		axios.post(`${LOCAL_SERVER}/board/upload`,variables).then((response) => {
+		axios.post(`${USER_SERVER}/board/upload`,variables).then((response) => {
 			if(response.status === 200) {
 				setInput({
           boardTitle: "",

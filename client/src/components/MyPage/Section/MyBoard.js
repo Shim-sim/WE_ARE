@@ -5,7 +5,7 @@ import StyledHeader from './StyledHeader'
 import BoardList from '../../Board/BoardList'
 import StyledBox from '../../Style/StyledBox'
 import AlertBox from './AlertBox'
-import { USER_SERVER, LOCAL_SERVER } from '../../Config'
+import { USER_SERVER } from '../../Config'
 
 
 function MyBoard(props) {
@@ -13,7 +13,7 @@ function MyBoard(props) {
 	
 	useEffect(()=> {
 		const userFrom = localStorage.getItem('userId')
-		axios.post(`${LOCAL_SERVER}/user/myBoard`, {'userFrom': userFrom} )
+		axios.post(`${USER_SERVER}/user/myBoard`, {'userFrom': userFrom} )
 			.then(response => {
 				if(response.data.success) {
 					setMyboard(response.data.boards)

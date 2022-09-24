@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { USER_SERVER, LOCAL_SERVER } from '../components/Config.js'
+import { USER_SERVER } from '../components/Config.js'
 import axios from 'axios'
 import styled from 'styled-components'
 import StyledContainer from '../components/Style/styledContainer'
@@ -22,7 +22,7 @@ function BoardView() {
 
 	
 	const loadMoreHandler = () => {
-		axios.post(`${LOCAL_SERVER}/board/getBoard`, { skip: skip })
+		axios.post(`${USER_SERVER}/board/getBoard`, { skip: skip })
 			.then((response) => {
 					setContent([...Content, ...response.data.boards])
 					setSkip(skip + response.data.boards.length)
@@ -34,7 +34,7 @@ function BoardView() {
 
 	const FetchNickname = () => {
 		const userId = localStorage.getItem('userId')
-		axios.get(`${LOCAL_SERVER}/user/profile`,userId)
+		axios.get(`${USER_SERVER}/user/profile`,userId)
 			.then((response) => {
 				localStorage.setItem('userNickname', response.data.nickname)
 			})
@@ -42,7 +42,7 @@ function BoardView() {
 	
 	
 	useEffect(()=> {
-		axios.post(`${LOCAL_SERVER}/board/getBoard`)
+		axios.post(`${USER_SERVER}/board/getBoard`)
 			.then((response) => {
 				if(response.data.success) {
 					setContent(response.data.boards)
@@ -53,7 +53,7 @@ function BoardView() {
 		FetchNickname()
 	}, [])
 	
-	
+
 	return (
 		<>
 			<StyledContainer marginTop="15%">

@@ -44,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-	"proxy": "https://we-are-app.herokuapp.com"
+	"proxy": "https://we-are-server.run.goorm.io"
 }

@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { useDispatch } from "react-redux";
 import { loginUser } from "../_actions/user_action";
 import { Link, useNavigate } from "react-router-dom";
-import Auth from '../hoc/auth';
+import Auth from '../hoc/auth'
 import styled from "styled-components";
-import logo from '../assets/logo.png';
-import StyledContainer from '../components/Style/styledContainer';
-import LoginInput from '../components/Login/LoginInput';
+import logo from '../assets/logo.png'
+import StyledContainer from '../components/Style/styledContainer'
+import LoginInput from '../components/Login/LoginInput'
 
 
 const FlexBox = styled.div`
@@ -67,8 +67,8 @@ const Button = styled.button`
 
 function Login() {
 	
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	
 	const [inputs, setInput] = useState({
 		userId: "",

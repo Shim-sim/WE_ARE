@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { USER_SERVER, LOCAL_SERVER } from '../components/Config.js'
+import { USER_SERVER } from '../components/Config.js'
 import axios from 'axios'
 import styled from 'styled-components'
 import StyledContainer from '../components/Style/styledContainer'
@@ -63,7 +63,7 @@ function BoardDetail(props) {
 		if(!Value) {
 			alert('댓글 내용을 작성해 주세요.')
 		} else {
-			axios.post(`${LOCAL_SERVER}/comment/upload`, variables)
+			axios.post(`${USER_SERVER}/comment/upload`, variables)
 			.then((response) => {
 				if(response.status === 200) {
 					alert('댓글이 등록 되었습니다.')
@@ -77,7 +77,7 @@ function BoardDetail(props) {
 	
 	
 	const FetchComment = () => {
-		axios.post(`${LOCAL_SERVER}/comment/getComment`, {boardFrom:  BoardId})
+		axios.post(`${USER_SERVER}/comment/getComment`, {boardFrom:  BoardId})
 			.then((response) => {
 				if(response.data.success) {
 					setComments(response.data.comments)
@@ -88,7 +88,7 @@ function BoardDetail(props) {
 	}
 	
 	useEffect(()=> {
-		axios.post(`${LOCAL_SERVER}/board/boardId`, { boardId: BoardId})
+		axios.post(`${USER_SERVER}/board/boardId`, { boardId: BoardId})
 			.then((response) =>{
 				if(response.data.success) {
 					setBoardDetail([response.data.board])
