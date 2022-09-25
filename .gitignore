@@ -7,3 +7,4 @@ goorm.manifest
 node_modules
 memo
 dev.js
+build
