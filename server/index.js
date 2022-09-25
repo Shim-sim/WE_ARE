@@ -27,22 +27,6 @@ app.use(cors({
 	credentials: true
 }))
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-
-app.use('/register', registerRouter)
-app.use('/login', loginRouter)
-app.use('/logout', logoutRouter);
-app.use('/user', userRouter)
-app.use('/board', boardRouter);
-app.use('/comment', commentRouter)
-app.use('/auth', authRouter);
-
-
-app.get('/hello', (req, res) => res.send('서버연결됨'))
-
 if(process.env.NODE_ENV === "production") {
 	app.use(express.static('client/build'));
 	
@@ -54,6 +38,18 @@ if(process.env.NODE_ENV === "production") {
 		res.sendFile(path.join(__dirname,"../client", "build", "index.html"))
 	});
 }
+
+
+app.use('/register', registerRouter)
+app.use('/login', loginRouter)
+app.use('/logout', logoutRouter);
+app.use('/user', userRouter)
+app.use('/board', boardRouter);
+app.use('/comment', commentRouter)
+app.use('/auth', authRouter);
+
+
+
 
 
 
