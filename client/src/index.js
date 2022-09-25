@@ -16,10 +16,10 @@ const createStoreWithMiddleware = applyMiddleware(ReduxThunk,Reduxpromise)(creat
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<HashRouter>
+	<BrowserRouter basename={process.env.PUBLIC_URL}>
 		<Provider store={createStoreWithMiddleware(Reducer)}>
     		<App />
 		</Provider>	
-	</HashRouter>	
+	</BrowserRouter>	
 );
 
