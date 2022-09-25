@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "We Are app in army",
   "main": "index.js",
-  "engine": {
+  "engines": {
     "node": "16.17.0",
     "npm": "8.15.0"
   },
