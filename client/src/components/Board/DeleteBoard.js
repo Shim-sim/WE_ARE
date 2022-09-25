@@ -1,6 +1,5 @@
 import axios from 'axios';
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 import { USER_SERVER } from '../Config.js'
 
 
@@ -13,7 +12,6 @@ const Button = styled.button`
 
 
 export default function DeleteBoard(props) {
-	const navigate = useNavigate()
 	
 	const onDelete = () => {
 		let variables = {

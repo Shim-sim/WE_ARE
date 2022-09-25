@@ -2,14 +2,13 @@ import { useState } from 'react';
 import { logoutUser } from '../../_actions/user_action';
 import { HeaderWrap } from '../Style/HeaderStyle';
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BsFillPersonFill, BsPencilSquare } from "react-icons/bs";
 import logo from '../../assets/logo.png';
 
 
 
 function Header() {
-	const user = useSelector(state => state.user.isLoggedIn);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	

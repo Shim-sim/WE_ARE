@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import profile from '../../assets/profile.png'
 import styled from 'styled-components'
 import UpdateTime from '../Common/UpdateTime'
@@ -50,13 +50,6 @@ const BoardContent = styled.div`
   margin-bottom: 8px;
   white-space: pre-wrap;
   overflow-wrap: break-word;
-`
-
-const StyledDiv = styled.button`
-  display: inline-block;
-  color: #0ca5af;
-  font-size: 13px;
-  padding-left: 4px;
 `
 
 
