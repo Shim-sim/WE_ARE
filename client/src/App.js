@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Routes, Route, BrowserRouter } from "react-router-dom"
+import { Routes, Route} from "react-router-dom"
 import Login from './pages/Login'
 import Register from './pages/Register'
 import MyPage from './pages/MyPage'
@@ -17,7 +17,7 @@ function App() {
   return (
 		<>
 			<Header />
-		<BrowserRouter basename={process.env.PUBLIC_URL}>
+		
 			<Routes>
 				<Route path="/" element={<Login />} />
 				<Route path="/register" element={<Register />} />
@@ -29,7 +29,7 @@ function App() {
 				<Route path="/mypage/nickname" element={<NickName />} />
 				<Route path="/mypage/withdrawl" element={<WithDrawal />} />
 			</Routes>
-		</BrowserRouter>
+		
 		</>
   );
 }
