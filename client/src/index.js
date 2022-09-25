@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from './App';
-import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 import ReduxThunk from "redux-thunk";
@@ -16,12 +15,8 @@ const createStoreWithMiddleware = applyMiddleware(ReduxThunk,Reduxpromise)(creat
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
-		<BrowserRouter>
-			<Provider store={createStoreWithMiddleware(Reducer)}>
+		<Provider store={createStoreWithMiddleware(Reducer)}>
     		<App />
-			</Provider>	
-		</BrowserRouter>	
- 
+		</Provider>	
 );
 
