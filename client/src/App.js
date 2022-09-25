@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { Routes, Route, BrowserRouter } from "react-router-dom"
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -8,8 +9,6 @@ import Upload from './pages/Upload'
 import MyBoard from './components/MyPage/Section/MyBoard'
 import NickName from './components/MyPage/Section/NickName'
 import WithDrawal from './components/MyPage/Section/WithDrawal'
-
-
 import Header from './components/Common/Header'
 
 function App() {
