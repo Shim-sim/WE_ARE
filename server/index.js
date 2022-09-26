@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const app = express()
+const http = require('http')
 const path = require("path")
 const config = require('./config/key')
 const registerRouter = require('./routes/register')
@@ -12,6 +13,8 @@ const userRouter = require('./routes/user')
 const boardRouter = require('./routes/board')
 const commentRouter = require('./routes/comment')
 const authRouter = require('./routes/auth')
+
+
 
 const mongoose = require('mongoose')
  mongoose.connect(config.mongoURI)
@@ -33,7 +36,13 @@ if(process.env.NODE_ENV === "production") {
 	app.get("/", (req, res) => {
 		res.sendFile(path.resolve(__dirname,"../client", "build", "index.html"))
 	});
+	
+	setInterval(() => {
+		http.get('https://we-are-app.herokuapp.com');
+	}, 1200000)
 }
+
+
 
 
 app.use('/register', registerRouter)
