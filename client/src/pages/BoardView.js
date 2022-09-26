@@ -32,16 +32,8 @@ function BoardView() {
 			})
 	}
 
-	const FetchNickname = () => {
-		const userId = localStorage.getItem('userId')
-		axios.get(`${USER_SERVER}/user/profile`,userId)
-			.then((response) => {
-				localStorage.setItem('userNickname', response.data.nickname)
-			})
-	}
 	
-	
-	useEffect(()=> {
+	const FetchBoard = () => {
 		axios.post(`${USER_SERVER}/board/getBoard`)
 			.then((response) => {
 				if(response.data.success) {
@@ -50,8 +42,22 @@ function BoardView() {
 					alert('게시글을 보여줄 수 없습니다.')
 				}
 		})
-		FetchNickname()
+	}
+	
+	
+	useEffect(()=> {
+		const userId = localStorage.getItem('userId')
+		axios.get(`${USER_SERVER}/user/profile`,userId)
+			.then((response) => {
+				localStorage.setItem('userNickname', response.data.nickname)
+			})
+		FetchBoard()
 	}, [])
+	
+	const onRemove = (id) => {
+		setContent(Content.filter(content => content._id !== id))
+		FetchBoard()
+	}
 	
 
 	return (
@@ -68,6 +74,7 @@ function BoardView() {
 									title={board.boardTitle}
 									content={board.boardContent}
 									writer={board.boardWriter}
+									onRemove={onRemove}
 								/>
 							</React.Fragment>
 						)

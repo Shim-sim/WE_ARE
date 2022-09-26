@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { USER_SERVER } from '../components/Config.js'
 import axios from 'axios'
 import styled from 'styled-components'
@@ -31,7 +31,7 @@ const BackButton = styled.span`
 
 
 function BoardDetail(props) {
-	
+	const naviagate = useNavigate()
 	const {BoardId} = useParams()
 	const userFrom = localStorage.getItem('userId');
   const writerFrom = localStorage.getItem('userNickname')
@@ -58,23 +58,6 @@ function BoardDetail(props) {
     };
   }
 	
-	const onSubmit = (e) => {
-		e.preventDefault()
-		if(!Value) {
-			alert('댓글 내용을 작성해 주세요.')
-		} else {
-			axios.post(`${USER_SERVER}/comment/upload`, variables)
-			.then((response) => {
-				if(response.status === 200) {
-					alert('댓글이 등록 되었습니다.')
-					setValue('')
-					window.location.reload()
-				}
-			})
-		}
-		
-	}
-	
 	
 	const FetchComment = () => {
 		axios.post(`${USER_SERVER}/comment/getComment`, {boardFrom:  BoardId})
@@ -86,6 +69,34 @@ function BoardDetail(props) {
 				}
 		})
 	}
+	
+	const onSubmit = (e) => {
+		e.preventDefault()
+		if(!Value) {
+			alert('댓글 내용을 작성해 주세요.')
+		} else {
+			axios.post(`${USER_SERVER}/comment/upload`, variables)
+			.then((response) => {
+				if(response.status === 200) {
+					alert('댓글이 등록 되었습니다.')
+					setValue('')
+					FetchComment()
+				}
+			})
+		}
+		
+	}
+	
+	const onRemoveBoard = (id) => {
+		setBoardDetail(BoardDetail.filter(board => board._id !== id))
+		naviagate('/')
+	}
+	
+	const onRemoveComment = (id) => {
+		setComments(Comments.filter(comment => comment._id !== id))
+		FetchComment()
+	}
+	
 	
 	useEffect(()=> {
 		axios.post(`${USER_SERVER}/board/boardId`, { boardId: BoardId})
@@ -112,6 +123,7 @@ function BoardDetail(props) {
 							title={board.boardTitle}
 							content={board.boardContent}
 							writer={board.boardWriter}
+							onRemove={onRemoveBoard}
 						/>	
 					</React.Fragment>	
 				)

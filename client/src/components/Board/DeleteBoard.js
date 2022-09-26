@@ -25,7 +25,7 @@ export default function DeleteBoard(props) {
 		.then(response => {
 			if(response.data.success) {
 				alert('게시글 삭제에 성공했습니다.')
-				window.location.reload()
+				props.onRemove(response.data.result._id);
 			} else {
 				alert('게시글 삭제에 실패했습니다.')
 			}

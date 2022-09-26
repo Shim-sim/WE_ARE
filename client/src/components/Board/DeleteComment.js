@@ -1,6 +1,7 @@
 import axios from 'axios';
 import styled from 'styled-components'
 import { USER_SERVER } from '../Config.js'
+import { useNavigate } from 'react-router-dom'
 
 
 const Button = styled.button`
@@ -9,12 +10,14 @@ const Button = styled.button`
   line-height: 22px;
 `
 
-export default function DeleteComment(props) {
+export default function DeleteComment({ id, user, onRemove }) {
+	
+	const navigate = useNavigate()
 	
 	const onDelete = () => {
 		let variables = {
-			id: props.id,
-			userFrom: props.user
+			id: id,
+			userFrom: user
 		}
 		
 		let comfirmDelete = window.confirm('삭제하시겠습니까?')
@@ -22,7 +25,7 @@ export default function DeleteComment(props) {
 		.then(response => {
 			if(response.data.success) {
 				alert('댓글 삭제에 성공했습니다.')
-				window.location.reload()
+				navigate('/')
 			} else {
 				alert('댓글 삭제에 실패했습니다.')
 			}

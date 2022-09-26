@@ -70,6 +70,7 @@ export default function BoardList(props) {
 					? <DeleteBoard
 							board={props.id}
 							user={props.user}
+							onRemove={props.onRemove}
 						/>	
 					: null }
 			</BoardUser>
