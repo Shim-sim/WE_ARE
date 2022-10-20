@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({
-	origin: 'https://we-are-client.run.goorm.io',
+	origin: 'https://we-are-app.herokuapp.com',
 	credentials: true
 }))
 
