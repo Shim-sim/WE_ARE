@@ -1,5 +1,4 @@
-
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledP = styled.p`
   font-size: 12px;

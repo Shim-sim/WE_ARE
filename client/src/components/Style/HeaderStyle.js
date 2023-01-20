@@ -1,5 +1,4 @@
-import styled from "styled-components"
-
+import styled from 'styled-components';
 
 export const HeaderWrap = styled.div`
 	position: fixed;
@@ -79,5 +78,4 @@ export const HeaderWrap = styled.div`
 	
 	
 	}
-`
-
+`;

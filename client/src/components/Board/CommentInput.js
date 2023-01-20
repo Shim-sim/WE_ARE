@@ -8,11 +8,11 @@ const Input = styled.input`
   font-size: 13px;
   line-height: 40px;
   border: 1px solid #ddd;
-	border-radius: 15px;
+  border-radius: 15px;
   box-sizing: border-box;
-`
+`;
 
-const CommentInput = function({name, placeholder, value, onChange}) {
+const CommentInput = function ({ name, placeholder, value, onChange }) {
   return (
     <Input
       name={name}
@@ -20,7 +20,7 @@ const CommentInput = function({name, placeholder, value, onChange}) {
       onChange={onChange}
       value={value}
     />
-  );   
-}
+  );
+};
 
 export default CommentInput;

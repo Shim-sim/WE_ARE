@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Input = styled.input`
   width: 95%;
@@ -13,19 +13,19 @@ const Input = styled.input`
 
   height: 40px;
   margin-top: 5px;
-	margin-left: 8px;
-`
+  margin-left: 8px;
+`;
 
 const LoginInput = ({ type, name, placeholder, onChange, value }) => {
-	return (
-		<Input 
-			type={type}
-			name={name}
-			placeholder={placeholder}
-			onChange={onChange}
-			value={value}
-		/>
-	)
-}
+  return (
+    <Input
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      onChange={onChange}
+      value={value}
+    />
+  );
+};
 
-export default LoginInput
+export default LoginInput;

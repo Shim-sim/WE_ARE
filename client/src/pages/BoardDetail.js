@@ -87,11 +87,6 @@ function BoardDetail(props) {
     naviagate('/');
   };
 
-  const onRemoveComment = (id) => {
-    setComments(Comments.filter((comment) => comment._id !== id));
-    FetchComment();
-  };
-
   useEffect(() => {
     axios
       .post(`${USER_SERVER}/board/boardId`, { boardId: BoardId })
