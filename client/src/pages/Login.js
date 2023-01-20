@@ -1,25 +1,24 @@
-import { useState } from 'react'
-import { useDispatch } from "react-redux";
-import { loginUser } from "../_actions/user_action";
-import { Link, useNavigate } from "react-router-dom";
-import Auth from '../hoc/auth'
-import styled from "styled-components";
-import logo from '../assets/logo.png'
-import StyledContainer from '../components/Style/styledContainer'
-import LoginInput from '../components/Login/LoginInput'
-
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../_actions/user_action';
+import { Link, useNavigate } from 'react-router-dom';
+import Auth from '../hoc/auth';
+import styled from 'styled-components';
+import logo from '../assets/logo.png';
+import StyledContainer from '../components/Style/styledContainer';
+import LoginInput from '../components/Login/LoginInput';
 
 const FlexBox = styled.div`
-	display: flex;
-	justify-content: center;
-	 margin: 50px 0 12px 0;
-`
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 12px 0;
+`;
 
 const Logo = styled.img`
-    display: inline-block;
-    width: 48px;
-    height: 52px;
-		margin-top: 10px;
+  display: inline-block;
+  width: 48px;
+  height: 52px;
+  margin-top: 10px;
 `;
 
 const LogoTitle = styled.h2`
@@ -46,12 +45,10 @@ const StyledSpan = styled.span`
 `;
 
 const Button = styled.button`
-
   width: 95%;
   color: white;
   cursor: pointer;
   text-align: center;
-
 
   height: 40px;
   font-size: 16px;
@@ -59,91 +56,88 @@ const Button = styled.button`
 
   background: #db1e08;
 
-
   margin-top: 6px;
-	margin-left: 8px;
-`
-
+  margin-left: 8px;
+`;
 
 function Login() {
-	
-	const dispatch = useDispatch()
-	const navigate = useNavigate()
-	
-	const [inputs, setInput] = useState({
-		userId: "",
-		userPw: ""
-	})
-	
-	const { userId, userPw } = inputs;
-	
-	const onChange = (e) => {
-		const { value, name } = e.target
-		setInput({
-			...inputs,
-			[name]: value
-		})
-	}
-	
-	const onSubmit = (e) => {
-		e.preventDefault();
-		
-		let body = {
-			id: userId,
-			password: userPw
-		}
-		
-		if(!userId || !userPw) {
-			alert('필수 항목을 작성해주세요!')
-		} else {
-			dispatch(loginUser(body))
-				.then((response) => {
-					if(response.payload.loginSuccess) {
-						localStorage.setItem('userId', response.payload.userId)
-						navigate('/board')
-					} else {
-						alert(response.payload.message)
-					}
-			})
-		}
-	}
-	
-	return (
-		<StyledContainer>
-			<div>
-			 <FlexBox>
-					<Logo src={logo} alt="logo" />
-					<LogoTitle>지금 
-						<strong> WE ARE</strong>
-						을 시작하세요!
-					</LogoTitle>
-				</FlexBox>
-				<form onSubmit={onSubmit}>
-					<LoginInput
-						placeholder="아이디"
-						name="userId"
-						value={userId}
-						onChange={onChange}
-						type="text"
-					/>
-					<LoginInput 
-						placeholder="비밀번호"
-						name="userPw"
-						value={userPw}
-						onChange={onChange}
-						type="password"
-					/>
-					<Button type="submit" onClick={onSubmit}>로그인</Button>
-				</form>	
-				 <StyledDiv>
-         		<Link to="/register">
-            	<StyledSpan>We Are에 처음이신가요?</StyledSpan>회원가입
-         		</Link>
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [inputs, setInput] = useState({
+    userId: '',
+    userPw: '',
+  });
+
+  const { userId, userPw } = inputs;
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setInput({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    let body = {
+      id: userId,
+      password: userPw,
+    };
+
+    if (!userId || !userPw) {
+      alert('필수 항목을 작성해주세요!');
+    } else {
+      dispatch(loginUser(body)).then((response) => {
+        if (response.payload.loginSuccess) {
+          localStorage.setItem('userId', response.payload.userId);
+          navigate('/board');
+        } else {
+          alert(response.payload.message);
+        }
+      });
+    }
+  };
+
+  return (
+    <StyledContainer>
+      <div>
+        <FlexBox>
+          <Logo src={logo} alt="logo" />
+          <LogoTitle>
+            지금
+            <strong> WE ARE</strong>을 시작하세요!
+          </LogoTitle>
+        </FlexBox>
+        <form onSubmit={onSubmit}>
+          <LoginInput
+            placeholder="아이디"
+            name="userId"
+            value={userId}
+            onChange={onChange}
+            type="text"
+          />
+          <LoginInput
+            placeholder="비밀번호"
+            name="userPw"
+            value={userPw}
+            onChange={onChange}
+            type="password"
+          />
+          <Button type="submit" onClick={onSubmit}>
+            로그인
+          </Button>
+        </form>
+        <StyledDiv>
+          <Link to="/register">
+            <StyledSpan>We Are에 처음이신가요?</StyledSpan>회원가입
+          </Link>
         </StyledDiv>
-			</div>
-		</StyledContainer>	
-		
-	)
+      </div>
+    </StyledContainer>
+  );
 }
 
-export default Auth(Login, false)
+export default Auth(Login, false);
